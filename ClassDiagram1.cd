@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ver01_TreeView.App" Collapsed="true">
+    <Position X="8" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ver01_TreeView.Behaviours.TreeViewSelectionChangedBehavior" Collapsed="true">
+    <Position X="9.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAgAAAAAABAAAQAAAAAgAAAAAAQAQAgAIAAAAAAAAA=</HashCode>
+      <FileName>Behaviours\TreeViewSelectionChangedBehavior.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ver01_TreeView.Model.File" Collapsed="true">
+    <Position X="9.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Model\File.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ver01_TreeView.Model.Folder" Collapsed="true">
+    <Position X="11.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAAAEAAAAUAAAAAAAAAABQAA=</HashCode>
+      <FileName>Model\Folder.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ver01_TreeView.Model.ProgramListFoldersAndFiles" Collapsed="true">
+    <Position X="8" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AqAgAAAAAABAAYABAAAAAAAAgAAAAAAAgAAAAACAAAA=</HashCode>
+      <FileName>Model\ProgramListFoldersAndFiles.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ver01_TreeView.Properties.Resources" Collapsed="true">
+    <Position X="13.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ver01_TreeView.Properties.Settings" Collapsed="true">
+    <Position X="8" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ver01_TreeView.View.MainWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\MainWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ver01_TreeView.ViewModel.Base.RelayCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAACAAQAAEAAAAAAAAAAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\Base\RelayCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ver01_TreeView.ViewModel.Base.RelayCommand&lt;T&gt;" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAACAAQAAEAAAAAAAAAAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\Base\RelayCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ver01_TreeView.ViewModel.Base.ViewModelBase" Collapsed="true">
+    <Position X="3.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\Base\ViewModelBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ver01_TreeView.ViewModel.FolderViewModel" Collapsed="true">
+    <Position X="1" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\FolderViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ver01_TreeView.ViewModel.FolderViewModelBase" Collapsed="true">
+    <Position X="1" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\FolderViewModelBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ver01_TreeView.ViewModel.ItemViewModel">
+    <Position X="3.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAQAAAAAAEAIAAAAEIASAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\ItemViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ver01_TreeView.ViewModel.MainViewModel">
+    <Position X="5.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAIAAAAAAAAAFAAAAAAAAgAAAAAACAAgABAEAA=</HashCode>
+      <FileName>ViewModel\MainViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
