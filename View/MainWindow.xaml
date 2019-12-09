@@ -9,7 +9,7 @@
       xmlns:behav="clr-namespace:ver01_TreeView.Behaviours"
       xmlns:ViewModel="clr-namespace:ver01_TreeView.ViewModel"
         
-      Height="600" Width="800"
+      Height="800" Width="800"
       Title="Layouts-RosColor">
 
     <Window.DataContext>
@@ -24,15 +24,17 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <StackPanel Height="40" Orientation="Horizontal" Margin="3">
+        <StackPanel Height="35" Orientation="Horizontal" Margin="3">
 
-            <Button Height="30" Width="100" HorizontalAlignment="Left" Command="{Binding RootCommand}">
+            <Button Height="28" Width="90" HorizontalAlignment="Left" Command="{Binding RootCommand}">
                 <Border>
                     <TextBlock Text="домой" FontWeight="Bold"/>
                 </Border>
             </Button>
 
-            <Button Height="30" Width="100" HorizontalAlignment="Left" Command="{Binding UpFolderCommand}">
+            <Separator />
+
+            <Button Height="28" Width="90" HorizontalAlignment="Left" Command="{Binding UpFolderCommand}">
                 <Border>
                     <TextBlock Text="вверх" FontWeight="Bold"/>
                 </Border>
@@ -40,9 +42,12 @@
             
         </StackPanel>
 
-        <Grid  Grid.Row="1">
+        <!-- Размещаем грид на второй строке -->
+            <Grid  Grid.Row="1">
             <Grid.ColumnDefinitions>
+                <!-- Здесь дерево -->
                 <ColumnDefinition Width="*" />
+                <!-- Здесь Содержимое папки -->
                 <ColumnDefinition Width="2*" />
             </Grid.ColumnDefinitions>
             
@@ -53,14 +58,18 @@
                 show the correct page for each type of view.
                 -->
                 <DataTemplate DataType="{x:Type ViewModel:FolderViewModel}">
-                    <Grid>
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="3*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
 
-                        <GroupBox Grid.Row="2" Header="Текущая папка: ">
-                            <StackPanel Height="32" Orientation="Horizontal">
-
-                                <Button Height="28" Width="100" HorizontalAlignment="Left">
+                        <GroupBox Header="Текущая папка: ">
+                            <StackPanel Height="25" Orientation="Horizontal">
+                                <Button Height="22" Width="80" HorizontalAlignment="Left">
                                     <Border>
-                                        <TextBox FontStyle="Normal" Text="{Binding Path = FolderTitle, StringFormat = {}{0} }"/>
+                                        <TextBox Text="{Binding Path = FolderTitle, StringFormat = {}{0} }"/>
                                     </Border>
                                 </Button>
                             </StackPanel>
@@ -86,10 +95,10 @@
                         </DataGrid>
                         -->
 
-                        <ScrollViewer Grid.Column="1" >
-
-
-                                <!-- Резделение на Item -->
+                        
+                        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Disabled">
+                            
+                            <!-- Резделение на Item -->
 
                             <ListBox
                                     SelectedItem="{Binding SelectedFile, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -131,7 +140,7 @@
 
                                 <ItemsControl.ItemsPanel>
                                     <ItemsPanelTemplate>
-                                        <WrapPanel Margin="10" Orientation="Horizontal" MaxWidth="500"/>
+                                        <WrapPanel Margin="10" Orientation="Horizontal" MaxWidth="550"/>
                                     </ItemsPanelTemplate>
                                 </ItemsControl.ItemsPanel>
                             </ListBox>
