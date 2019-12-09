@@ -53,26 +53,14 @@
                 show the correct page for each type of view.
                 -->
                 <DataTemplate DataType="{x:Type ViewModel:FolderViewModel}">
-                    <StackPanel Margin="3">
-                        <!--<TextBlock Margin="3" FontSize="12" FontStyle="Italic" Text="{Binding Path=FolderTitle, StringFormat = {} Текущая папка: {0}}">-->
-                        <!--<TextBlock FontSize="14" FontStyle="Italic" Text="Текущая папка: " VerticalAlignment="Center">
-                            
-                                --><!--<Button FontStyle="Normal" Content="{Binding Path= FolderTitle, StringFormat = {}{0} }" />--><!--
-                            
-                            <Button HorizontalAlignment="Left">
-                                <Border BorderThickness="2"  >
-                                    <TextBlock FontStyle="Normal" Text="{Binding Path = FolderTitle, StringFormat = {}{0} }" FontWeight="Bold"/>
-                                </Border>
-                            </Button>
-                            
-                        </TextBlock>-->
+                    <Grid>
 
                         <GroupBox Grid.Row="2" Header="Текущая папка: ">
-                            <StackPanel Height="40" Orientation="Horizontal" Margin="3">
+                            <StackPanel Height="32" Orientation="Horizontal">
 
-                                <Button Height="30" Width="100" HorizontalAlignment="Left">
+                                <Button Height="28" Width="100" HorizontalAlignment="Left">
                                     <Border>
-                                        <TextBox FontStyle="Normal" Text="{Binding Path = FolderTitle, StringFormat = {}{0} }" FontWeight="Bold" />
+                                        <TextBox FontStyle="Normal" Text="{Binding Path = FolderTitle, StringFormat = {}{0} }"/>
                                     </Border>
                                 </Button>
                             </StackPanel>
@@ -156,7 +144,7 @@
                             </StackPanel>
                         </GroupBox>
 
-                    </StackPanel>
+                    </Grid>
                 </DataTemplate>
 
                 <!--<DataTemplate DataType="{x:Type vm:RootViewModel}">
