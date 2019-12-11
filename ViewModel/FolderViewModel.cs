@@ -1,6 +1,6 @@
-﻿using ver01_TreeView.ViewModel;
+﻿using LayotsMvvm.ViewModel;
 
-namespace ver01_TreeView.ViewModel
+namespace LayotsMvvm.ViewModel
 {
     public class FolderViewModel : FolderViewModelBase
     {

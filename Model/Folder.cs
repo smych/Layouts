@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ver01_TreeView.Model
+namespace LayotsMvvm.Model
 {
     public class Folder
     {
@@ -30,6 +30,7 @@ namespace ver01_TreeView.Model
         #endregion
 
         #region Child Files List
+
         List<File> _childFilesList;
         public List<File> ChildFilesList
         {
@@ -43,6 +44,7 @@ namespace ver01_TreeView.Model
                 return this._childFilesList;
             }
         }
+
         #endregion Child Files List
     }
 }

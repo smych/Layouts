@@ -10,18 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using LayotsMvvm.ViewModel;
 
 namespace LayotsMvvm.View
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для ChildWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ChildWindow : Window
     {
-        public MainWindow()
+        public ChildWindow()
         {
             InitializeComponent();
         }

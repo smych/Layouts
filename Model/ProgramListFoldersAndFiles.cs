@@ -4,9 +4,9 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ver01_TreeView.ViewModel;
+using LayotsMvvm.ViewModel;
 
-namespace ver01_TreeView.Model
+namespace LayotsMvvm.Model
 {
     public class ProgramListFoldersAndFiles
     {
@@ -45,7 +45,7 @@ namespace ver01_TreeView.Model
         #endregion
 
         #region Прохождение по всем папкам (полный цикл от начало до конца)
-        void LookFullCollectionAllItems(Folder _nFolder)
+        private void LookFullCollectionAllItems(Folder _nFolder)
         {
             if (_nFolder.ChildFoldersList.Count == 0)
             {

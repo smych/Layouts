@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{E65A94CF-5E93-4B29-AD1D-C185FFCB6956}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>TreeViewMywork</RootNamespace>
-    <AssemblyName>TreeViewMywork</AssemblyName>
+    <RootNamespace>LayotsMvvm</RootNamespace>
+    <AssemblyName>LayotsMvvm</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -59,6 +59,9 @@
     <Compile Include="Behaviours\TreeViewSelectionChangedBehavior.cs" />
     <Compile Include="Model\File.cs" />
     <Compile Include="Model\Folder.cs" />
+    <Compile Include="ViewModel\Base\DisplayRootRegistry.cs" />
+    <Compile Include="ViewModel\ChildWindowViewModel.cs" />
+    <Compile Include="ViewModel\DialogImageEditViewModel.cs" />
     <Compile Include="ViewModel\FileViewModel.cs" />
     <Compile Include="ViewModel\FolderViewModelBase.cs" />
     <Compile Include="Model\ProgramListFoldersAndFiles.cs" />
@@ -67,6 +70,12 @@
     <Compile Include="ViewModel\FolderViewModel.cs" />
     <Compile Include="ViewModel\ItemTreeViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="View\ChildWindow.xaml.cs">
+      <DependentUpon>ChildWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DialogImageEditWindow.xaml.cs">
+      <DependentUpon>DialogImageEditWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
@@ -78,6 +87,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\ChildWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DialogImageEditWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

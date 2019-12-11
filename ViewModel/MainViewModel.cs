@@ -1,21 +1,22 @@
-﻿   using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Input;
-using ver01_TreeView.Model;
-using ver01_TreeView.ViewModel.Base;
+using LayotsMvvm.Model;
+using LayotsMvvm.ViewModel.Base;
 
-namespace ver01_TreeView.ViewModel
+namespace LayotsMvvm.ViewModel
 {
-    public class MainViewModel : Base.ViewModelBase
+    public class MainViewModel : ViewModelBase
     {
         #region fields
-        //private readonly ItemTreeViewModel RootTreeViewModel;
         readonly string rootPath = @"\\fs1.rc.loc\temp\prog\Image\Root";
         private ObservableCollection<ItemTreeViewModel> _treeViewItemsCollection = null;
         private ItemTreeViewModel _selectedItemTreeViewItem;
         private ICommand _selectItemChangedCommand = null;
         private FolderViewModelBase _currentFolderViewModel = null;
         ProgramListFoldersAndFiles CreatCollectionModel;
-        //private FileViewModel _selectedFile;
+
         #endregion fields
 
         #region constructors
@@ -175,7 +176,7 @@ namespace ver01_TreeView.ViewModel
                 {
                     _rootCommand = new RelayCommand(
                         () => CurrentFolderViewModel = ReturnFolderViewModel(CreatCollectionModel.rootItemViewModel)
-                    );
+                    ) ; 
                 }
 
                 return _rootCommand;
@@ -188,20 +189,105 @@ namespace ver01_TreeView.ViewModel
         {
             get
             {
-                if (_upFolderCommand == null)
-                {
-                // Если null значет вы в корневой директории  
-                
-                    _upFolderCommand = new RelayCommand(() =>
-                        CurrentFolderViewModel = ReturnFolderViewModel(CurrentFolderViewModel.UpItemTreeViewFolder)
-                    );
-                
-                }
-               
-                return _upFolderCommand;
+                return _upFolderCommand ??
+                    (
+                        _upFolderCommand = new RelayCommand(
+                            () => CurrentFolderViewModel = ReturnFolderViewModel(CurrentFolderViewModel.UpItemTreeViewFolder)));
+                //() => CurrentFolderViewModel != null));
             }
         }
 
+        #region Command OpenDialog
+        //OpenDialog
+        private ICommand _openChildWindow;
+
+        private ICommand _openDialogWindow;
+
+
+        // Свойства доступные только для чтения для обращения к командам и их инициализации
+        public ICommand OpenChildWindow
+        {
+            get
+            {
+                if (_openChildWindow == null)
+                {
+                    _openChildWindow = new OpenChildWindowCommand(this);
+                }
+                return _openChildWindow;
+            }
+        }
+        public ICommand OpenDialogWindow
+        {
+            get
+            {
+                if (_openDialogWindow == null)
+                {
+
+                    _openDialogWindow = new OpenDialogWindowCommand(this);
+                }
+                return _openDialogWindow;
+            }
+        }
+        #endregion Command OpenDialog
+
         #endregion Propeties
     }
+
+    #region Реализация интерфейса ICommand для открытия дополнительных окон в MVVM
+    abstract class MyCommand : ICommand
+    {
+        protected MainViewModel _mainWindowVeiwModel;
+
+        public MyCommand(MainViewModel mainWindowVeiwModel)
+        {
+            _mainWindowVeiwModel = mainWindowVeiwModel;
+        }
+
+        public event EventHandler CanExecuteChanged;
+
+        public abstract bool CanExecute(object parameter);
+
+        public abstract void Execute(object parameter);
+    }
+
+    class OpenChildWindowCommand : MyCommand
+    {
+        public OpenChildWindowCommand(MainViewModel mainWindowVeiwModel) : base(mainWindowVeiwModel)
+        {
+        }
+        public override bool CanExecute(object parameter)
+        {
+            return true;
+        }
+        public override async void Execute(object parameter)
+        {
+            DisplayRootRegistry displayRootRegistry = (Application.Current as App).displayRootRegistry;
+
+            ChildWindowViewModel otherWindowViewModel = new ChildWindowViewModel();
+            await displayRootRegistry.ShowModalPresentation(otherWindowViewModel);
+        }
+    }
+
+    class OpenDialogWindowCommand : MyCommand
+    {
+        public OpenDialogWindowCommand(MainViewModel mainWindowVeiwModel) : base(mainWindowVeiwModel)
+        {
+        }
+
+        public override bool CanExecute(object parameter)
+        {
+            return true;
+        }
+        public override async void Execute(object parameter)
+        {
+            DisplayRootRegistry displayRootRegistry = (Application.Current as App).displayRootRegistry;
+
+            DialogImageEditViewModel dialogWindowViewModel = new DialogImageEditViewModel();
+            
+            await displayRootRegistry.ShowModalPresentation(dialogWindowViewModel);
+        }
+    }
+
+    #endregion Реализация интерфейса ICommand для открытия дополнительных окон в MVVM
+
 }

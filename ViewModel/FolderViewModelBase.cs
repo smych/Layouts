@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ver01_TreeView.ViewModel
+namespace LayotsMvvm.ViewModel
 {
     /// <summary>
     /// Class implements document base functions which are properties and methods that all documents support.

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ver01_TreeView.ViewModel
+namespace LayotsMvvm.ViewModel
 {
     public class FileViewModel : Base.ViewModelBase
     {
