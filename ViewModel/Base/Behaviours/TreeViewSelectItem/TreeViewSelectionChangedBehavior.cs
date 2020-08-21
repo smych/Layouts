@@ -1,4 +1,4 @@
-﻿namespace LayotsMvvm.Behaviours
+﻿namespace LayotsMvvm.ViewModel.Base.Behaviours.TreeViewSelectItem
 {
     using System.Windows;
     using System.Windows.Controls;

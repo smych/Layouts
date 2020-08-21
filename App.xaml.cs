@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using LayotsMvvm.View;
 using LayotsMvvm.ViewModel;
-using LayotsMvvm.ViewModel.Base;
+using LayotsMvvm.ViewModel.Base.OpenDialog;
+using LayotsMvvm.ViewModel.OpenDialogViewModel;
 
 namespace LayotsMvvm
 {

@@ -4,13 +4,14 @@ using System.Windows;
 using System.Windows.Input;
 using LayotsMvvm.Model;
 using LayotsMvvm.ViewModel.Base;
+using LayotsMvvm.ViewModel.Base.OpenDialog;
 
 namespace LayotsMvvm.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
         #region fields
-        readonly string rootPath = @"\\fs1.rc.loc\temp\prog\Image\Root";
+        readonly string rootPath = @"D:\Repos\!!! Layots My\Root";
         private ObservableCollection<ItemTreeViewModel> _treeViewItemsCollection = null;
         private ItemTreeViewModel _selectedItemTreeViewItem;
         private ICommand _selectItemChangedCommand = null;
@@ -198,7 +199,7 @@ namespace LayotsMvvm.ViewModel
         }
 
         #region Command OpenDialog
-        //OpenDialog
+
         private ICommand _openChildWindow;
 
         private ICommand _openDialogWindow;
@@ -222,7 +223,6 @@ namespace LayotsMvvm.ViewModel
             {
                 if (_openDialogWindow == null)
                 {
-
                     _openDialogWindow = new OpenDialogWindowCommand(this);
                 }
                 return _openDialogWindow;
@@ -234,59 +234,59 @@ namespace LayotsMvvm.ViewModel
     }
 
     #region Реализация интерфейса ICommand для открытия дополнительных окон в MVVM
-    abstract class MyCommand : ICommand
-    {
-        protected MainViewModel _mainWindowVeiwModel;
+    //abstract class MainOpenDialogCommand : ICommand
+    //{
+    //    protected MainViewModel _mainWindowVeiwModel;
 
-        public MyCommand(MainViewModel mainWindowVeiwModel)
-        {
-            _mainWindowVeiwModel = mainWindowVeiwModel;
-        }
+    //    public MainOpenDialogCommand(MainViewModel mainWindowVeiwModel)
+    //    {
+    //        _mainWindowVeiwModel = mainWindowVeiwModel;
+    //    }
 
-        public event EventHandler CanExecuteChanged;
+    //    public event EventHandler CanExecuteChanged;
 
-        public abstract bool CanExecute(object parameter);
+    //    public abstract bool CanExecute(object parameter);
 
-        public abstract void Execute(object parameter);
-    }
+    //    public abstract void Execute(object parameter);
+    //}
 
-    class OpenChildWindowCommand : MyCommand
-    {
-        public OpenChildWindowCommand(MainViewModel mainWindowVeiwModel) : base(mainWindowVeiwModel)
-        {
-        }
-        public override bool CanExecute(object parameter)
-        {
-            return true;
-        }
-        public override async void Execute(object parameter)
-        {
-            DisplayRootRegistry displayRootRegistry = (Application.Current as App).displayRootRegistry;
+    //class OpenChildWindowCommand : MainOpenDialogCommand
+    //{
+    //    public OpenChildWindowCommand(MainViewModel mainWindowVeiwModel) : base(mainWindowVeiwModel)
+    //    {
+    //    }
+    //    public override bool CanExecute(object parameter)
+    //    {
+    //        return true;
+    //    }
+    //    public override async void Execute(object parameter)
+    //    {
+    //        DisplayRootRegistry displayRootRegistry = (Application.Current as App).displayRootRegistry;
 
-            ChildWindowViewModel otherWindowViewModel = new ChildWindowViewModel();
-            await displayRootRegistry.ShowModalPresentation(otherWindowViewModel);
-        }
-    }
+    //        ChildWindowViewModel otherWindowViewModel = new ChildWindowViewModel();
+    //        await displayRootRegistry.ShowModalPresentation(otherWindowViewModel);
+    //    }
+    //}
 
-    class OpenDialogWindowCommand : MyCommand
-    {
-        public OpenDialogWindowCommand(MainViewModel mainWindowVeiwModel) : base(mainWindowVeiwModel)
-        {
-        }
+    //class OpenDialogWindowCommand : MainOpenDialogCommand
+    //{
+    //    public OpenDialogWindowCommand(MainViewModel mainWindowVeiwModel) : base(mainWindowVeiwModel)
+    //    {
+    //    }
 
-        public override bool CanExecute(object parameter)
-        {
-            return true;
-        }
-        public override async void Execute(object parameter)
-        {
-            DisplayRootRegistry displayRootRegistry = (Application.Current as App).displayRootRegistry;
+    //    public override bool CanExecute(object parameter)
+    //    {
+    //        return true;
+    //    }
+    //    public override async void Execute(object parameter)
+    //    {
+    //        DisplayRootRegistry displayRootRegistry = (Application.Current as App).displayRootRegistry;
 
-            DialogImageEditViewModel dialogWindowViewModel = new DialogImageEditViewModel();
+    //        DialogImageEditViewModel dialogWindowViewModel = new DialogImageEditViewModel();
             
-            await displayRootRegistry.ShowModalPresentation(dialogWindowViewModel);
-        }
-    }
+    //        await displayRootRegistry.ShowModalPresentation(dialogWindowViewModel);
+    //    }
+    //}
 
     #endregion Реализация интерфейса ICommand для открытия дополнительных окон в MVVM
 

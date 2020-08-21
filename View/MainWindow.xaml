@@ -5,11 +5,15 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       mc:Ignorable="d"
       
-      xmlns:behav="clr-namespace:LayotsMvvm.Behaviours"
+      xmlns:behav="clr-namespace:LayotsMvvm.ViewModel.Base.Behaviours.TreeViewSelectItem"
       xmlns:ViewModel="clr-namespace:LayotsMvvm.ViewModel"
+      xmlns:Converter="clr-namespace:LayotsMvvm.ViewModel.Base.ImageConverter"
         
       Height="800" Width="800"
       Title="Layouts-RosColor">
+    <Window.Resources>
+        <Converter:ImageSourceConverter x:Key="ImageSourceConverter" />
+    </Window.Resources>
 
     <Window.DataContext>
         <ViewModel:MainViewModel />
@@ -133,7 +137,7 @@
                                                         <DropShadowEffect ShadowDepth="1"/>
                                                     </Border.Effect>
 
-                                                    <Image Source="{Binding FilePath}" Width="100"/>
+                                                    <Image Source="{Binding FilePath, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ImageSourceConverter}}" Width="100"/>
 
                                                     <!--<Border.Background>
                                                                 <ImageBrush ImageSource = "/images/blankImage.jpg" />

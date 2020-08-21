@@ -38,6 +38,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -56,12 +57,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Behaviours\TreeViewSelectionChangedBehavior.cs" />
+    <Compile Include="ViewModel\Base\Behaviours\TreeViewSelectItem\TreeViewSelectionChangedBehavior.cs" />
     <Compile Include="Model\File.cs" />
     <Compile Include="Model\Folder.cs" />
-    <Compile Include="ViewModel\Base\DisplayRootRegistry.cs" />
-    <Compile Include="ViewModel\ChildWindowViewModel.cs" />
-    <Compile Include="ViewModel\DialogImageEditViewModel.cs" />
+    <Compile Include="ViewModel\Base\Behaviours\DragAndDrop\BehaviorsDaD.cs" />
+    <Compile Include="ViewModel\Base\ImageConverter\ConvertFsStream.cs" />
+    <Compile Include="ViewModel\Base\ImageConverter\FInfo.cs" />
+    <Compile Include="ViewModel\Base\ImageConverter\ImageSourceConverter.cs" />
+    <Compile Include="ViewModel\Base\OpenDialog\DisplayRootRegistry.cs" />
+    <Compile Include="ViewModel\Base\OpenDialog\OpenChildWindowCommand.cs" />
+    <Compile Include="ViewModel\Base\OpenDialog\MainOpenDialogCommand.cs" />
+    <Compile Include="ViewModel\Base\OpenDialog\OpenDialogWindowCommand.cs" />
+    <Compile Include="ViewModel\OpenDialogViewModel\ChildWindowViewModel.cs" />
+    <Compile Include="ViewModel\OpenDialogViewModel\DialogImageEditViewModel.cs" />
     <Compile Include="ViewModel\FileViewModel.cs" />
     <Compile Include="ViewModel\FolderViewModelBase.cs" />
     <Compile Include="Model\ProgramListFoldersAndFiles.cs" />
