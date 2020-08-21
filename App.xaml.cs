@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using LayotsMvvm.View;
 using LayotsMvvm.ViewModel;
-using LayotsMvvm.ViewModel.Base.OpenDialog;
+using LayotsMvvm.ViewModel.Base.Dialog.OpenDialog;
 using LayotsMvvm.ViewModel.OpenDialogViewModel;
 
 namespace LayotsMvvm
@@ -23,9 +23,7 @@ namespace LayotsMvvm
 
         public App()
         {
-            //#1
-            //displayRootRegistry.RegisterWindowType<MainWindowViewModel, MainWindowView>();
-            displayRootRegistry.RegisterWindowType<ChildWindowViewModel, ChildWindow>();
+            //displayRootRegistry.RegisterWindowType<ChildWindowViewModel, ChildWindow>();
             displayRootRegistry.RegisterWindowType<DialogImageEditViewModel, DialogImageEditWindow>();
         }
 

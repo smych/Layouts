@@ -4,7 +4,7 @@ using System.Windows;
 using System.Windows.Input;
 using LayotsMvvm.Model;
 using LayotsMvvm.ViewModel.Base;
-using LayotsMvvm.ViewModel.Base.OpenDialog;
+using LayotsMvvm.ViewModel.Base.Dialog.OpenDialog;
 
 namespace LayotsMvvm.ViewModel
 {
@@ -16,7 +16,7 @@ namespace LayotsMvvm.ViewModel
         private ItemTreeViewModel _selectedItemTreeViewItem;
         private ICommand _selectItemChangedCommand = null;
         private FolderViewModelBase _currentFolderViewModel = null;
-        ProgramListFoldersAndFiles CreatCollectionModel;
+        private ProgramListFoldersAndFiles CreatCollectionModel;
 
         #endregion fields
 

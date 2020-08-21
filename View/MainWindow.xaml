@@ -50,14 +50,14 @@
                 </Border>
             </Button>
 
-            <Button Height="Auto" Width="Auto" HorizontalAlignment="Left" Command="{Binding OpenChildWindow}">
+            <!--<Button Height="Auto" Width="Auto" HorizontalAlignment="Left" Command="{Binding OpenChildWindow}">
                 <Border>
                     <StackPanel>
                         <TextBlock Text="Открыть обычное " HorizontalAlignment="Center"/>
                         <TextBlock Text="дочернее окно" HorizontalAlignment="Center"/>
                     </StackPanel>
                 </Border>
-            </Button>
+            </Button>-->
 
         </StackPanel>
 

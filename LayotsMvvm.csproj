@@ -61,13 +61,15 @@
     <Compile Include="Model\File.cs" />
     <Compile Include="Model\Folder.cs" />
     <Compile Include="ViewModel\Base\Behaviours\DragAndDrop\BehaviorsDaD.cs" />
+    <Compile Include="ViewModel\Base\Dialog\ImageDialog\IImageDialogService.cs" />
+    <Compile Include="ViewModel\Base\Dialog\ImageDialog\ImageDefaultDialogService.cs" />
     <Compile Include="ViewModel\Base\ImageConverter\ConvertFsStream.cs" />
     <Compile Include="ViewModel\Base\ImageConverter\FInfo.cs" />
     <Compile Include="ViewModel\Base\ImageConverter\ImageSourceConverter.cs" />
-    <Compile Include="ViewModel\Base\OpenDialog\DisplayRootRegistry.cs" />
-    <Compile Include="ViewModel\Base\OpenDialog\OpenChildWindowCommand.cs" />
-    <Compile Include="ViewModel\Base\OpenDialog\MainOpenDialogCommand.cs" />
-    <Compile Include="ViewModel\Base\OpenDialog\OpenDialogWindowCommand.cs" />
+    <Compile Include="ViewModel\Base\Dialog\OpenDialog\DisplayRootRegistry.cs" />
+    <Compile Include="ViewModel\Base\Dialog\OpenDialog\OpenChildWindowCommand.cs" />
+    <Compile Include="ViewModel\Base\Dialog\OpenDialog\MainOpenDialogCommand.cs" />
+    <Compile Include="ViewModel\Base\Dialog\OpenDialog\OpenDialogWindowCommand.cs" />
     <Compile Include="ViewModel\OpenDialogViewModel\ChildWindowViewModel.cs" />
     <Compile Include="ViewModel\OpenDialogViewModel\DialogImageEditViewModel.cs" />
     <Compile Include="ViewModel\FileViewModel.cs" />
@@ -95,6 +97,26 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Style\Buttons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\Colors.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\DefaultBlock.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\Fonts.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\ListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\ChildWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

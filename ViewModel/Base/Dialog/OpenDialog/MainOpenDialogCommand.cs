@@ -1,11 +1,12 @@
-﻿using System;
+﻿using LayotsMvvm.ViewModel.OpenDialogViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace LayotsMvvm.ViewModel.Base.OpenDialog
+namespace LayotsMvvm.ViewModel.Base.Dialog.OpenDialog
 {
     abstract class MainOpenDialogCommand : ICommand
     {

@@ -6,10 +6,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace LayotsMvvm.ViewModel.Base.OpenDialog
+namespace LayotsMvvm.ViewModel.Base.Dialog.OpenDialog
 {
     class OpenDialogWindowCommand : MainOpenDialogCommand
     {
+        /// <summary>
+        /// Добавлен поле типа выбранного файла 
+        /// </summary>
+
+        //public FileViewModel GetFileImage { get; set; }
+        //public DialogImageEditViewModel dialogWindowViewModel { get; set; }
+
         public OpenDialogWindowCommand(MainViewModel mainWindowVeiwModel) : base(mainWindowVeiwModel)
         {
         }
@@ -22,7 +29,7 @@ namespace LayotsMvvm.ViewModel.Base.OpenDialog
         {
             DisplayRootRegistry displayRootRegistry = (Application.Current as App).displayRootRegistry;
 
-            DialogImageEditViewModel dialogWindowViewModel = new DialogImageEditViewModel();
+            DialogImageEditViewModel dialogWindowViewModel = new DialogImageEditViewModel(_mainWindowVeiwModel.CurrentFolderViewModel.SelectedFile);
 
             await displayRootRegistry.ShowModalPresentation(dialogWindowViewModel);
         }
