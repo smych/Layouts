@@ -162,7 +162,7 @@ namespace LayotsMvvm.Model
             //добавить коллекцию файлов
             foreach (File itemFile in _nFolder.ChildFilesList)
             {
-                _nItemViewModel.ChildrenFiles.Add(new FileViewModel() { FileTitle = itemFile.FileName, FilePath = itemFile.FilePath} );
+                _nItemViewModel.ChildrenFiles.Add(new FileViewModel() { GetFileTitle = itemFile.FileName, GetFilePath = itemFile.FilePath} );
             }
         }
 

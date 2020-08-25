@@ -1,5 +1,4 @@
-﻿using LayotsMvvm.ViewModel.Base;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace LayotsMvvm.ViewModel
 {
-    public class FileViewModel : ViewModelBase
+    public class FileViewModel : DefaultFileViewModel
     {
         #region fields
 
-        private string _fileTitle;
-        private string _filePath;
+        private string _getFileTitle;
+        private string _getFilePath;
         //private bool _isSelected;
 
         #endregion fields
@@ -33,19 +32,15 @@ namespace LayotsMvvm.ViewModel
         /// <summary>
         /// Gets the title of a document to display the information in the UI.
         /// </summary>
-        public string FileTitle
+        public override string GetFileTitle
         {
-            get
-            {
-                return _fileTitle;
-            }
-
+            get => _getFileTitle;
             set
             {
-                if (_fileTitle != value)
+                if (_getFileTitle != value)
                 {
-                    _fileTitle = value;
-                    RaisePropertyChanged(() => FileTitle);
+                    _getFileTitle = value;
+                    RaisePropertyChanged(() => GetFileTitle);
                 }
             }
         }
@@ -53,41 +48,20 @@ namespace LayotsMvvm.ViewModel
         /// <summary>
         /// Нахождение файла изображения
         /// </summary>
-        public string FilePath
+        public override string GetFilePath
         {
-            get
-            {
-                return _filePath;
-            }
+            get => _getFilePath;
 
             set
             {
-                if (_filePath != value)
+                if (_getFilePath != value)
                 {
-                    _filePath = value;
-                    RaisePropertyChanged(() => FilePath);
+                    _getFilePath = value;
+                    RaisePropertyChanged(() => GetFilePath);
                 }
             }
         }
 
-        //public bool IsSelected
-        //{
-        //    get
-        //    {
-        //        return _isSelected;
-        //    }
-
-        //    set
-        //    {
-        //        if (_isSelected != value)
-        //        {
-        //            _isSelected = value;
-        //            RaisePropertyChanged(() => IsSelected);
-        //        }
-        //    }
-        //}
-
         #endregion
-
     }
 }

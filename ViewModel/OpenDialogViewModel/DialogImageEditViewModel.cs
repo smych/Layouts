@@ -3,6 +3,7 @@ using LayotsMvvm.ViewModel.Base.Dialog.ImageDialog;
 using LayotsMvvm.ViewModel.Base.ImageConverter;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,69 +17,53 @@ namespace LayotsMvvm.ViewModel.OpenDialogViewModel
     {
         #region Fields
 
-        FileViewModel _getFileImage = null;
-        public FileViewModel GetFileImage 
+        private FileViewModel _getCurentObjectFileImage = null;
+        public FileViewModel GetCurentObjectFileImage 
         {
-            get => _getFileImage;
+            get => _getCurentObjectFileImage;
             set 
             {
-                if (_getFileImage != value)
+                if (_getCurentObjectFileImage != value)
                 {
-                    _getFileImage = value;
-                    RaisePropertyChanged(() => GetFileImage);
+                    _getCurentObjectFileImage = value;
+                    //GetInfoFile = new FInfo(_getCurentObjectFileImage.GetFilePath);
+                    RaisePropertyChanged(() => GetCurentObjectFileImage);
                 }
             } 
         }
 
-        #region Path SaveFile
-
-        private string _getSaveFilePath = null;
-        public string GetSaveFilePath
+        private ImageEditFileViewModel _getCurentEditFileImage = null;
+        public ImageEditFileViewModel GetCurentEditFileImage
         {
-            get => _getSaveFilePath;
+            get => _getCurentEditFileImage;
             set
             {
-                if (_getSaveFilePath != value)
+                if (_getCurentEditFileImage != value)
                 {
-                    _getSaveFilePath = value;
-                    RaisePropertyChanged(() => GetSaveFilePath);
+                    _getCurentEditFileImage = value;
+                    RaisePropertyChanged(() => GetCurentEditFileImage);
                 }
             }
         }
-
-        #endregion
-
-        #region FileInfo
-
-        private FInfo _getFile = null;
-        public FInfo GetFile
-        {
-            get
-            {
-                return _getFile;
-            }
-            set
-            {
-                if (_getFile != value)
-                {
-                    _getFile = value;
-                    RaisePropertyChanged(() => GetFile);
-                }
-            }
-        }
-
-        #endregion
 
         #endregion Fields
 
         public DialogImageEditViewModel()
         {
+            //DragAndDrop
+            this.DandCommand = new RelayCommand<object>(ExecuteDandCommand, CanExecuteDandCommand);
 
+            // DialogService
+            this.dialogService = new ImageDefaultDialogService();
+
+            GetCurentEditFileImage = new ImageEditFileViewModel();
         }
 
-        public DialogImageEditViewModel(FileViewModel _image)
+        public DialogImageEditViewModel(FileViewModel _image) : this()
         {
-            GetFileImage = _image;
+            // Назначаем текущий рисунок
+            GetCurentObjectFileImage = _image;
+            GetCurentEditFileImage = RestoreDefaultFile(_image);
         }
 
         #region DragAndDrop
@@ -97,7 +82,17 @@ namespace LayotsMvvm.ViewModel.OpenDialogViewModel
                     {
                         foreach (string fullPath in filesOrDirectories)
                         {
-                            this.GetFileImage.FilePath = fullPath;
+                            //this.GetCurentObjectFileImage.GetFilePath = fullPath;
+
+                            if (File.Exists(fullPath))
+                            {
+                                GetCurentEditFileImage.GetFilePath = fullPath;
+                            }
+                            else
+                            {
+                                MessageBox.Show($"Файл не найден: '{fullPath}' \n ! Исправте путь к файлу !");
+                            }
+
                             //if (Directory.Exists(fullPath))
                             //{
                             //    Console.WriteLine(@"{0} is a directory", fullPath);
@@ -125,15 +120,15 @@ namespace LayotsMvvm.ViewModel.OpenDialogViewModel
         //Интерфейс диалог сервис
         private IImageDialogService dialogService;
 
-        // команда Сохранить как
+        // команда Сохранить
         private RelayCommand<object> saveCommand = null;
         public RelayCommand<object> SaveCommand => saveCommand ?? (saveCommand = new RelayCommand<object>(obj =>
         {
             try
             {
                 BitmapImage TempBitmapImage = obj as BitmapImage;
-                ConvertFsStream.SaveFromBitmapImageToFileFormatPNG(TempBitmapImage, GetFileImage.FilePath);
-                GetSaveFilePath = GetFileImage.FilePath;
+                ConvertFsStream.SaveFromBitmapImageToFileFormatPNG(TempBitmapImage, GetCurentObjectFileImage.GetFilePath);
+                GetCurentEditFileImage.GetSaveFilePath = GetCurentObjectFileImage.GetFilePath;
             }
             catch (Exception ex)
             {
@@ -149,7 +144,7 @@ namespace LayotsMvvm.ViewModel.OpenDialogViewModel
             {
                 if (dialogService.SaveAsFileDialog(obj as BitmapImage) == true)
                 {
-                    GetSaveFilePath = dialogService.FilePath;
+                    GetCurentEditFileImage.GetSaveFilePath = dialogService.FilePath;
                 }
             }
             catch (Exception ex)
@@ -166,7 +161,7 @@ namespace LayotsMvvm.ViewModel.OpenDialogViewModel
             {
                 if (dialogService.OpenFileDialog() == true)
                 {
-                    GetFileImage.FilePath = dialogService.FilePath;
+                    GetCurentObjectFileImage.GetFilePath = dialogService.FilePath;
                     //dialogService.ShowMessage($"Файл открыт: '{dialogService.FilePath}'");
                 }
             }
@@ -175,5 +170,30 @@ namespace LayotsMvvm.ViewModel.OpenDialogViewModel
                 dialogService.ShowMessage(ex.Message);
             }
         }));
+
+        // команда Вернуть по умолчанию
+        private RelayCommand<object> _returnDefaultFile = null;
+        public RelayCommand<object> ReturnDefaultFile => _returnDefaultFile ?? (_returnDefaultFile = new RelayCommand<object>(obj =>
+        {
+            try
+            {
+                GetCurentEditFileImage = RestoreDefaultFile(GetCurentObjectFileImage);
+            }
+            catch (Exception ex)
+            {
+                dialogService.ShowMessage(ex.Message);
+            }
+        }));
+
+        // Вернуть начальное отображение FileViewModel
+        ImageEditFileViewModel RestoreDefaultFile(FileViewModel _image)
+        {
+            var temp = new ImageEditFileViewModel();
+            temp.GetFileViewModel = _image;
+            temp.GetFilePath = _image.GetFilePath;
+            temp.GetFileTitle = _image.GetFileTitle;
+            temp.GetIsEqualDefault = false;
+            return temp;            
+        }
     }
 }

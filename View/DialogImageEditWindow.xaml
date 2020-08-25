@@ -11,7 +11,7 @@
         xmlns:DragAndDrop ="clr-namespace:LayotsMvvm.ViewModel.Base.Behaviours.DragAndDrop"
         
         mc:Ignorable="d"
-        Title="{Binding GetFileImage.FileTitle, StringFormat='Редактор Изображения: {0}',TargetNullValue='Редактор TargetNullValue', FallbackValue='Редактор FallbackValue'}" Height="auto" Width="Auto">
+        Title="{Binding  GetCurentEditFileImage.GetFileTitle, StringFormat='Редактор Изображения: {0}',TargetNullValue='Редактор TargetNullValue', FallbackValue='Редактор FallbackValue'}" Height="auto" Width="Auto">
     <Window.DataContext>
         <OpenDialogViewModel:DialogImageEditViewModel />
     </Window.DataContext>
@@ -27,12 +27,12 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions >
             <RowDefinition Height="100" />
-            <RowDefinition Height="30" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" x:Name="Row3" />
         </Grid.RowDefinitions>
 
         <StackPanel x:Name="st1" Grid.Row="0" Orientation="Horizontal" Margin="3" Width="auto" >
-            <GroupBox Height="87" Header="Команды">
+            <GroupBox Height="87" Header="команды">
                 <StackPanel Orientation="Horizontal">
                     <Button 
                         Height="30" 
@@ -71,56 +71,60 @@
                 </StackPanel>
             </GroupBox>
 
-            <GroupBox Margin="3" Header="Характеристики файла: " Height="87" FontSize="{StaticResource Micro}" FontFamily="{StaticResource BaseFont}" >
+            <GroupBox Margin="3" Header="характеристики файла: " Height="87" FontSize="{StaticResource Micro}" FontFamily="{StaticResource BaseFont}" >
                 <StackPanel Orientation="Horizontal">
 
                     <GroupBox Grid.Row="0" Grid.Column="0">
                         <StackPanel  Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <Label Content="{Binding ElementName=CurentImage, Path=ActualWidth}" ContentStringFormat=" Width: {0:#,#}" FontSize="{StaticResource Micro}" FontFamily="{StaticResource BaseFont}" />
-                            <Label Content="{Binding ElementName=CurentImage, Path=ActualHeight}" ContentStringFormat="Height: {0:#,#}" FontSize="{StaticResource Micro}" FontFamily="{StaticResource BaseFont}" />
+                            <Label Content="{Binding ElementName=CurentImage, Path=ActualWidth}" ContentStringFormat=" width: {0:#,#}" FontSize="{StaticResource Micro}" FontFamily="{StaticResource BaseFont}" />
+                            <Label Content="{Binding ElementName=CurentImage, Path=ActualHeight}" ContentStringFormat="height: {0:#,#}" FontSize="{StaticResource Micro}" FontFamily="{StaticResource BaseFont}" />
                         </StackPanel>
                     </GroupBox>
 
                     <GroupBox Grid.Column="1">
                         <StackPanel  Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <Label Content="{Binding GetFile.GetSize, UpdateSourceTrigger=PropertyChanged}" ContentStringFormat="size: {0}" FontSize="{StaticResource Micro}" FontFamily="{StaticResource BaseFont}" />
-                            <Label Content="{Binding GetFile.GetExt, UpdateSourceTrigger=PropertyChanged}" ContentStringFormat="Ext.: {0}" FontSize="{StaticResource Micro}" FontFamily="{StaticResource BaseFont}" />
+                            <Label Content="{Binding Path=GetCurentEditFileImage.GetInfoFile.GetSize, UpdateSourceTrigger=PropertyChanged}" ContentStringFormat="size: {0}" FontSize="{StaticResource Micro}" FontFamily="{StaticResource BaseFont}" />
+                            <Label Content="{Binding Path=GetCurentEditFileImage.GetInfoFile.GetExt, UpdateSourceTrigger=PropertyChanged}" ContentStringFormat="Ext.: {0}" FontSize="{StaticResource Micro}" FontFamily="{StaticResource BaseFont}" />
                         </StackPanel>
                     </GroupBox>
 
                 </StackPanel>
             </GroupBox>
 
-            <GroupBox Header="Дополнительно: " Margin="3" VerticalAlignment="Center" HorizontalAlignment="Center" Height="87" FontSize="{StaticResource Micro}" FontFamily="{StaticResource BaseFont}" >
+            <GroupBox Header="дополнительно: " Margin="3" VerticalAlignment="Center" HorizontalAlignment="Center" Height="87" FontSize="{StaticResource Micro}" FontFamily="{StaticResource BaseFont}" >
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                     <GroupBox Margin="3">
-                        <CheckBox x:Name="Ch1" Content="Редактировать изображение" IsChecked="False" FontSize="{StaticResource Micro}" FontFamily="{StaticResource BaseFont}"/>
+                        <CheckBox x:Name="Ch1" Content="редактировать изображение" IsChecked="False" FontSize="{StaticResource Micro}" FontFamily="{StaticResource BaseFont}"/>
                     </GroupBox>
-                    <GroupBox Margin="3" Header="Статус сохранения файла: " FontSize="{StaticResource Micro}" FontFamily="{StaticResource BaseFont}">
-                        <Label Content="{Binding Path=GetImVm.GetSaveFilePath, UpdateSourceTrigger=PropertyChanged}" FontSize="{StaticResource Micro}" FontFamily="{StaticResource BaseFont}"/>
+                    <GroupBox Margin="3" Header="статус сохранения файла: " FontSize="{StaticResource Micro}" FontFamily="{StaticResource BaseFont}">
+                        <Label Content="{Binding Path=GetCurentEditFileImage.GetSaveFilePath, UpdateSourceTrigger=PropertyChanged}" FontSize="{StaticResource Micro}" FontFamily="{StaticResource BaseFont}"/>
                     </GroupBox>
                 </StackPanel>
             </GroupBox>
 
         </StackPanel>
 
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto" />
-                <ColumnDefinition x:Name="cl1" Width="6*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-            </Grid.RowDefinitions>
 
-            <Label Grid.Column="0" Content="Путь к файлу:"  VerticalAlignment="Center" Width="90"/>
-            <TextBox x:Name="tb1" Grid.Column="1" VerticalAlignment="Center" Text="{Binding Path=GetFileImage.FilePath, UpdateSourceTrigger=PropertyChanged}" Height="20" IsEnabled="{Binding ElementName=Ch1, Path=IsChecked}" />
 
-        </Grid>
+        <GroupBox Grid.Row="1" Header="путь к файлу:">
+            <StackPanel>
+                <Label Margin="3"  HorizontalAlignment="Left" VerticalAlignment="Center" Content="{Binding Path=GetCurentObjectFileImage.GetFilePath, UpdateSourceTrigger=PropertyChanged}" ContentStringFormat="Текущий файл: {0}" />
+                <StackPanel Orientation="Horizontal">
+                    <TextBox Margin="3"  HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding Path=GetCurentEditFileImage.GetFilePath, StringFormat='Фай для замены: {0}',TargetNullValue='Фай для замены: отсутствует', UpdateSourceTrigger=PropertyChanged}"  IsEnabled="{Binding GetCurentEditFileImage.GetIsEqualDefault}" />
+                    <Button
+                        Margin="3"
+                        Content="Вернуть по умолчанию"
+                        Command="{Binding ReturnDefaultFile}" 
+                        Style="{StaticResource BaseButton}" 
+                        IsEnabled="{Binding GetCurentEditFileImage.GetIsEqualDefault}" />
+                </StackPanel>
+            </StackPanel>
+        </GroupBox>
 
-        <Grid x:Name="GR2" Grid.Row="2" VerticalAlignment="Stretch"  HorizontalAlignment="Stretch"  AllowDrop="{Binding ElementName=Ch1, Path=IsChecked}" DragAndDrop:BehaviorsDaD.DandBehaviour="{Binding GetFileImage.FilePath}" >
+        <Grid x:Name="GR2" Grid.Row="2" VerticalAlignment="Stretch"  HorizontalAlignment="Stretch"  AllowDrop="{Binding ElementName=Ch1, Path=IsChecked}" DragAndDrop:BehaviorsDaD.DandBehaviour="{Binding DandCommand}" >
             <StackPanel >
                 <GroupBox Margin="3" BorderThickness="2" Background="AliceBlue" VerticalAlignment="Center"  HorizontalAlignment="Center">
-                    <Image x:Name="CurentImage" Margin="3" Stretch="None" Source="{Binding Path=GetFileImage.FilePath, Converter={StaticResource ImageSourceConverter}}" />
+                    <Image x:Name="CurentImage" Margin="3" Stretch="None" Source="{Binding Path=GetCurentEditFileImage.GetFilePath, Converter={StaticResource ImageSourceConverter}}" />
                 </GroupBox>
             </StackPanel>
         </Grid>

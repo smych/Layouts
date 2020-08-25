@@ -70,6 +70,7 @@
     <Compile Include="ViewModel\Base\Dialog\OpenDialog\OpenChildWindowCommand.cs" />
     <Compile Include="ViewModel\Base\Dialog\OpenDialog\MainOpenDialogCommand.cs" />
     <Compile Include="ViewModel\Base\Dialog\OpenDialog\OpenDialogWindowCommand.cs" />
+    <Compile Include="ViewModel\DefaultFileViewModel.cs" />
     <Compile Include="ViewModel\OpenDialogViewModel\ChildWindowViewModel.cs" />
     <Compile Include="ViewModel\OpenDialogViewModel\DialogImageEditViewModel.cs" />
     <Compile Include="ViewModel\FileViewModel.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="ViewModel\FolderViewModel.cs" />
     <Compile Include="ViewModel\ItemTreeViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\OpenDialogViewModel\ImageEditFileViewModel.cs" />
     <Compile Include="View\ChildWindow.xaml.cs">
       <DependentUpon>ChildWindow.xaml</DependentUpon>
     </Compile>
@@ -157,7 +159,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="File\" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="images\FolderOpen.png" />
   </ItemGroup>

@@ -29,26 +29,24 @@
 
         <StackPanel Height="35" Orientation="Horizontal" Margin="3">
 
-            <Button Height="28" Width="90" HorizontalAlignment="Left" Command="{Binding RootCommand}">
-                <Border>
-                    <TextBlock Text="домой" FontWeight="Bold"/>
-                </Border>
-            </Button>
+            <Button
+                Margin="3"
+                Height="28" 
+                Width="90" 
+                HorizontalAlignment="Left" 
+                Command="{Binding RootCommand}"
+                Style="{StaticResource BaseButton}"
+                Content="Домой"/>
 
-            <Button Height="28" Width="90" HorizontalAlignment="Left" Command="{Binding UpFolderCommand}">
-                <Border>
-                    <TextBlock Text="вверх" FontWeight="Bold"/>
-                </Border>
-            </Button>
-
-            <Button Height="Auto" Width="Auto" HorizontalAlignment="Left" Command="{Binding OpenDialogWindow}">
-                <Border>
-                    <StackPanel>
-                        <TextBlock Text="Открыть обычное " HorizontalAlignment="Center"/>
-                        <TextBlock Text="окно" HorizontalAlignment="Center"/>
-                    </StackPanel>
-                </Border>
-            </Button>
+            <Button 
+                Margin="3"
+                Height="28" 
+                Width="90" 
+                HorizontalAlignment="Left" 
+                Command="{Binding UpFolderCommand}"
+                Style="{StaticResource BaseButton}"
+                Content="Верх"
+                />
 
             <!--<Button Height="Auto" Width="Auto" HorizontalAlignment="Left" Command="{Binding OpenChildWindow}">
                 <Border>
@@ -84,15 +82,33 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <GroupBox Header="Текущая папка: ">
-                            <StackPanel Height="30" Orientation="Horizontal">
-                                <Button Height="28" Width="80" HorizontalAlignment="Left">
-                                    <Border>
-                                        <TextBox Text="{Binding Path = FolderTitle, StringFormat = {}{0} }"/>
-                                    </Border>
-                                </Button>
-                            </StackPanel>
-                        </GroupBox>
+                        <StackPanel>
+                            <GroupBox Header="Текущий файл: ">
+                                <Button 
+                                    Height="Auto" 
+                                    Width="Auto" 
+                                    HorizontalAlignment="Left" 
+                                    Command="{Binding OpenDialogWindow}"
+                                    Content="{Binding SelectedFile.GetFileTitle, StringFormat= {}{0}}" 
+                                    Style="{StaticResource BaseButton}"
+                                    />
+                            </GroupBox>
+                            <GroupBox Header="Текущая папка: ">
+                                <StackPanel Height="30" Orientation="Horizontal">
+                                    <Button 
+                                        Height="28" 
+                                        Width="80" 
+                                        HorizontalAlignment="Left"
+                                        Style="{StaticResource BaseButton}"
+                                        Content="{Binding Path=FolderTitle, StringFormat = {}{0} }"
+                                        >
+                                        <!--<Border>
+                                            <TextBox Text="{Binding Path = FolderTitle, StringFormat = {}{0} }"/>
+                                        </Border>-->
+                                    </Button>
+                                </StackPanel>
+                            </GroupBox>
+                        </StackPanel>
 
                         <!-- // Отображение содержимого папки ВИД DataGrid
                         <DataGrid ItemsSource="{Binding ChildrenFileViewModelsCollection}" AutoGenerateColumns="False" >
@@ -137,7 +153,7 @@
                                                         <DropShadowEffect ShadowDepth="1"/>
                                                     </Border.Effect>
 
-                                                    <Image Source="{Binding FilePath, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ImageSourceConverter}}" Width="100"/>
+                                                    <Image Source="{Binding GetFilePath, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ImageSourceConverter}}" Width="100"/>
 
                                                     <!--<Border.Background>
                                                                 <ImageBrush ImageSource = "/images/blankImage.jpg" />
@@ -146,7 +162,7 @@
                                                 </Border>
 
                                                 <!-- Поле №2 -->
-                                                <TextBlock Margin="5" Text="{Binding FileTitle}" FontSize="17" FontFamily="Franklin Gothic Medium"/>
+                                                <TextBlock Margin="5" Text="{Binding GetFileTitle}" FontSize="17" FontFamily="Franklin Gothic Medium"/>
 
                                                 <!-- Поле №3 -->
                                                 <!--<TextBlock Margin="5 0" Text="{Binding LastName}" FontSize="15"/>-->
@@ -165,10 +181,10 @@
                             </ListBox>
                         </ScrollViewer>
 
-                        <GroupBox Grid.Row="2" Header="Debugging Information File">
+                        <GroupBox Grid.Row="2" Header="Debugging Information File: ">
                             <StackPanel>
-                                <TextBlock Text="{Binding SelectedFile.FileTitle}" />
-                                <TextBlock Text="{Binding SelectedFile.FilePath}" />
+                                <Label Content="{Binding SelectedFile.GetFileTitle}" />
+                                <Label Content="{Binding SelectedFile.GetFilePath}" />
                             </StackPanel>
                         </GroupBox>
 
