@@ -1,9 +1,11 @@
-﻿using System;
+﻿using LayotsMvvm.ViewModel.Base.Dialog.OpenDialog;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace LayotsMvvm.ViewModel
 {
@@ -125,6 +127,11 @@ namespace LayotsMvvm.ViewModel
                 }
             }
         }
+
+        #endregion
+
+        #region MainViewModel
+        public static MainViewModel GetMainViewModel { get; set; }
 
         #endregion
 

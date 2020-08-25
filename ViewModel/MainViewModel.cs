@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.IO;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Input;
 using LayotsMvvm.Model;
@@ -11,7 +13,15 @@ namespace LayotsMvvm.ViewModel
     public class MainViewModel : ViewModelBase
     {
         #region fields
-        readonly string rootPath = @"D:\Repos\!!! Layots My\Root";
+
+        // folder root
+        string outPutDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase);
+
+
+        //Получает текущий рабочий каталог приложения - Debug
+        private string rootD = Directory.GetCurrentDirectory();
+
+        readonly string rootPath = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + "\\RootFolder";
         private ObservableCollection<ItemTreeViewModel> _treeViewItemsCollection = null;
         private ItemTreeViewModel _selectedItemTreeViewItem;
         private ICommand _selectItemChangedCommand = null;
@@ -151,6 +161,11 @@ namespace LayotsMvvm.ViewModel
                 ChildrenFileViewModelsCollection = _item.ChildrenFiles
             };
 
+            if (FolderViewModel.GetMainViewModel == null)
+            {
+                FolderViewModel.GetMainViewModel = this;
+            }
+
             return result;
         }
 
@@ -198,25 +213,25 @@ namespace LayotsMvvm.ViewModel
             }
         }
 
-        #region Command OpenDialog
 
-        private ICommand _openChildWindow;
+
+        #region region Реализация интерфейса ICommand для открытия дополнительных окон в MVVM
 
         private ICommand _openDialogWindow;
 
 
         // Свойства доступные только для чтения для обращения к командам и их инициализации
-        public ICommand OpenChildWindow
-        {
-            get
-            {
-                if (_openChildWindow == null)
-                {
-                    _openChildWindow = new OpenChildWindowCommand(this);
-                }
-                return _openChildWindow;
-            }
-        }
+        //public ICommand OpenChildWindow
+        //{
+        //    get
+        //    {
+        //        if (_openChildWindow == null)
+        //        {
+        //            _openChildWindow = new OpenChildWindowCommand(this);
+        //        }
+        //        return _openChildWindow;
+        //    }
+        //}
         public ICommand OpenDialogWindow
         {
             get
@@ -228,66 +243,9 @@ namespace LayotsMvvm.ViewModel
                 return _openDialogWindow;
             }
         }
-        #endregion Command OpenDialog
+        #endregion Реализация интерфейса ICommand для открытия дополнительных окон в MVVM
 
-        #endregion Propeties
+
+        #endregion
     }
-
-    #region Реализация интерфейса ICommand для открытия дополнительных окон в MVVM
-    //abstract class MainOpenDialogCommand : ICommand
-    //{
-    //    protected MainViewModel _mainWindowVeiwModel;
-
-    //    public MainOpenDialogCommand(MainViewModel mainWindowVeiwModel)
-    //    {
-    //        _mainWindowVeiwModel = mainWindowVeiwModel;
-    //    }
-
-    //    public event EventHandler CanExecuteChanged;
-
-    //    public abstract bool CanExecute(object parameter);
-
-    //    public abstract void Execute(object parameter);
-    //}
-
-    //class OpenChildWindowCommand : MainOpenDialogCommand
-    //{
-    //    public OpenChildWindowCommand(MainViewModel mainWindowVeiwModel) : base(mainWindowVeiwModel)
-    //    {
-    //    }
-    //    public override bool CanExecute(object parameter)
-    //    {
-    //        return true;
-    //    }
-    //    public override async void Execute(object parameter)
-    //    {
-    //        DisplayRootRegistry displayRootRegistry = (Application.Current as App).displayRootRegistry;
-
-    //        ChildWindowViewModel otherWindowViewModel = new ChildWindowViewModel();
-    //        await displayRootRegistry.ShowModalPresentation(otherWindowViewModel);
-    //    }
-    //}
-
-    //class OpenDialogWindowCommand : MainOpenDialogCommand
-    //{
-    //    public OpenDialogWindowCommand(MainViewModel mainWindowVeiwModel) : base(mainWindowVeiwModel)
-    //    {
-    //    }
-
-    //    public override bool CanExecute(object parameter)
-    //    {
-    //        return true;
-    //    }
-    //    public override async void Execute(object parameter)
-    //    {
-    //        DisplayRootRegistry displayRootRegistry = (Application.Current as App).displayRootRegistry;
-
-    //        DialogImageEditViewModel dialogWindowViewModel = new DialogImageEditViewModel();
-            
-    //        await displayRootRegistry.ShowModalPresentation(dialogWindowViewModel);
-    //    }
-    //}
-
-    #endregion Реализация интерфейса ICommand для открытия дополнительных окон в MVVM
-
 }

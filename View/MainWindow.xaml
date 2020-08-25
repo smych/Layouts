@@ -16,7 +16,7 @@
     </Window.Resources>
 
     <Window.DataContext>
-        <ViewModel:MainViewModel />
+        <ViewModel:MainViewModel x:Name="Main" />
     </Window.DataContext>
 
     <Grid>
@@ -88,7 +88,7 @@
                                     Height="Auto" 
                                     Width="Auto" 
                                     HorizontalAlignment="Left" 
-                                    Command="{Binding OpenDialogWindow}"
+                                    Command="{Binding Path= GetMainViewModel.OpenDialogWindow}"
                                     Content="{Binding SelectedFile.GetFileTitle, StringFormat= {}{0}}" 
                                     Style="{StaticResource BaseButton}"
                                     />
