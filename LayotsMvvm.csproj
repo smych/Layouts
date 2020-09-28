@@ -68,12 +68,10 @@
     <Compile Include="ViewModel\Base\ImageConverter\FInfo.cs" />
     <Compile Include="ViewModel\Base\ImageConverter\ImageSourceConverter.cs" />
     <Compile Include="ViewModel\Base\Dialog\OpenDialog\DisplayRootRegistry.cs" />
-    <Compile Include="ViewModel\Base\Dialog\OpenDialog\OpenChildWindowCommand.cs" />
     <Compile Include="ViewModel\Base\Dialog\OpenDialog\MainOpenDialogCommand.cs" />
     <Compile Include="ViewModel\Base\Dialog\OpenDialog\OpenDialogWindowCommand.cs" />
     <Compile Include="ViewModel\Base\ReturnMainViewModel.cs" />
     <Compile Include="ViewModel\DefaultFileViewModel.cs" />
-    <Compile Include="ViewModel\OpenDialogViewModel\ChildWindowViewModel.cs" />
     <Compile Include="ViewModel\OpenDialogViewModel\DialogImageEditViewModel.cs" />
     <Compile Include="ViewModel\FileViewModel.cs" />
     <Compile Include="ViewModel\FolderViewModelBase.cs" />
@@ -84,9 +82,6 @@
     <Compile Include="ViewModel\ItemTreeViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\OpenDialogViewModel\ImageEditFileViewModel.cs" />
-    <Compile Include="View\ChildWindow.xaml.cs">
-      <DependentUpon>ChildWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\DialogImageEditWindow.xaml.cs">
       <DependentUpon>DialogImageEditWindow.xaml</DependentUpon>
     </Compile>
@@ -120,10 +115,6 @@
     <Page Include="Style\ListView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\ChildWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\DialogImageEditWindow.xaml">
       <SubType>Designer</SubType>

@@ -23,20 +23,7 @@ namespace LayotsMvvm
 
         public App()
         {
-            //displayRootRegistry.RegisterWindowType<ChildWindowViewModel, ChildWindow>();
             displayRootRegistry.RegisterWindowType<DialogImageEditViewModel, DialogImageEditWindow>();
         }
-
-        // #1
-        //protected override async void OnStartup(StartupEventArgs e)
-        //{
-        //    base.OnStartup(e);
-
-        //    mainWindowViewModel = new MainWindowViewModel();
-
-        //    await displayRootRegistry.ShowModalPresentation(mainWindowViewModel);
-
-        //    Shutdown();
-        //}
     }
 }

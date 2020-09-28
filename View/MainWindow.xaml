@@ -49,15 +49,6 @@
                 Content="Верх"
                 />
 
-            <!--<Button Height="Auto" Width="Auto" HorizontalAlignment="Left" Command="{Binding OpenChildWindow}">
-                <Border>
-                    <StackPanel>
-                        <TextBlock Text="Открыть обычное " HorizontalAlignment="Center"/>
-                        <TextBlock Text="дочернее окно" HorizontalAlignment="Center"/>
-                    </StackPanel>
-                </Border>
-            </Button>-->
-
         </StackPanel>
 
         <!-- Размещаем грид на второй строке -->
@@ -84,7 +75,36 @@
                         </Grid.RowDefinitions>
 
                         <StackPanel>
-                            <GroupBox Header="Текущий файл: ">
+                            <StackPanel Orientation="Horizontal">
+                                <GroupBox Header="Создать изображение: ">
+                                    <Button 
+                                    Height="Auto" 
+                                    Width="Auto" 
+                                    HorizontalAlignment="Left" 
+                                    Style="{StaticResource BaseButton}"
+                                    Command="{Binding NewFileOpenDialogWindow}" 
+                                    CommandParameter="{Binding Path=NewFileViewModel}"
+                                    Content="новое изображение"
+                                    />
+                                </GroupBox>
+                                <GroupBox Header="Текущее изображение: ">
+                                    <Button 
+                                    Height="Auto" 
+                                    Width="Auto" 
+                                    HorizontalAlignment="Left" 
+                                    Command="{Binding Path=GetMainViewModel.OpenDialogWindow}"
+                                    Content="{Binding SelectedFile.GetFileTitle, StringFormat= {}{0}}" 
+                                    Style="{StaticResource BaseButton}"
+                                    />
+
+                                    <!-- OldComand
+                                    Command="{Binding Path=OpenDialogFolderView}"
+                                    CommandParameter="{Binding Path=SelectedFile}"
+                                    -->
+
+                                </GroupBox>
+                            </StackPanel>
+                            <!--<GroupBox Header="Текущий файл: ">
                                 <Button 
                                     Height="Auto" 
                                     Width="Auto" 
@@ -93,7 +113,7 @@
                                     Content="{Binding SelectedFile.GetFileTitle, StringFormat= {}{0}}" 
                                     Style="{StaticResource BaseButton}"
                                     />
-                            </GroupBox>
+                            </GroupBox>-->
                             <GroupBox Header="Текущая папка: ">
                                 <StackPanel Height="30" Orientation="Horizontal">
                                     <Button 
@@ -103,34 +123,11 @@
                                         Style="{StaticResource BaseButton}"
                                         Content="{Binding Path=FolderTitle, StringFormat = {}{0} }"
                                         >
-                                        <!--<Border>
-                                            <TextBox Text="{Binding Path = FolderTitle, StringFormat = {}{0} }"/>
-                                        </Border>-->
+
                                     </Button>
                                 </StackPanel>
                             </GroupBox>
                         </StackPanel>
-
-                        <!-- // Отображение содержимого папки ВИД DataGrid
-                        <DataGrid ItemsSource="{Binding ChildrenFileViewModelsCollection}" AutoGenerateColumns="False" >
-
-                            <DataGrid.Columns>
-
-                                <DataGridTemplateColumn Header="Image" IsReadOnly="True">
-                                    <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <Image Source="{Binding FilePath}" Width="100"/>
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellTemplate>
-                                </DataGridTemplateColumn>
-
-                                <DataGridTextColumn Header="Имя Файла" Binding="{Binding FileTitle}" />
-
-                            </DataGrid.Columns>
-
-                        </DataGrid>
-                        -->
-
                         
                         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Visible">
                             
@@ -217,10 +214,12 @@
                   BehaviorTreeViewSelectItem:TreeViewSelectionChangedBehavior.ChangedCommand="{Binding SelectItemChangedCommand}"
                   >
                 
+                <!-- Левая колонка отображение дерева папок -->
                 <TreeView.ItemTemplate>
                     <HierarchicalDataTemplate ItemsSource="{Binding ChildrenFolders}">
                         <StackPanel Orientation="Horizontal" Margin="2">
-                            <Border Background="GhostWhite" BorderBrush="Gainsboro" BorderThickness="1">
+                            <!--<Border Background="GhostWhite" BorderBrush="Gainsboro" BorderThickness="3">-->
+                            <Border Background="GhostWhite" BorderThickness="0">
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source = "/images/FolderClouse.png" Height="30" Margin="2"/>
                                     <TextBlock Text="{Binding NameFolder}" VerticalAlignment="Center" Margin="4" Width="Auto" />
@@ -232,8 +231,26 @@
 
                 <TreeView.ItemContainerStyle>
                     <Style TargetType="{x:Type TreeViewItem}">
+                        
+                        <Style.Resources>
+                            <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="Green"/>
+                        </Style.Resources>
+                        
+                        <!-- Раскрываемый элемент  -->
                         <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
+
+                        <!-- Выделенный элемент  -->
                         <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        <Style.Triggers>
+                            <!-- Если элемент выделен! -->
+                                <Trigger Property="IsSelected" Value="True">
+
+                                <!-- Цвет текста будет! -->
+                                <Setter Property="Foreground" Value="Brown" />
+                                <!--<Setter Property="FontWeight" Value="Bold" />-->
+
+                            </Trigger>
+                        </Style.Triggers>
                     </Style>
                 </TreeView.ItemContainerStyle>
 

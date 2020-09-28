@@ -76,7 +76,7 @@
 
                     <GroupBox Grid.Row="0" Grid.Column="0">
                         <StackPanel  Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <Label Content="{Binding ElementName=CurentImage, Path=ActualWidth}" ContentStringFormat=" width: {0:#,#}" FontSize="{StaticResource Micro}" FontFamily="{StaticResource BaseFont}" />
+                            <Label Content="{Binding ElementName=CurentImage, Path=ActualWidth}" ContentStringFormat="width: {0:#,#}" FontSize="{StaticResource Micro}" FontFamily="{StaticResource BaseFont}" />
                             <Label Content="{Binding ElementName=CurentImage, Path=ActualHeight}" ContentStringFormat="height: {0:#,#}" FontSize="{StaticResource Micro}" FontFamily="{StaticResource BaseFont}" />
                         </StackPanel>
                     </GroupBox>

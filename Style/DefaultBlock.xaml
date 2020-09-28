@@ -75,11 +75,15 @@
 
                         <Trigger Property="IsMouseOver" Value="true">
 
-                            <!--<Setter Property="FontWeight" Value="ExtraBold" />
+                            <!--
+                            <Setter Property="FontWeight" Value="ExtraBold" />
 
                             <Setter Property="FontWeight" Value="Bold" />
 
-                            <Setter Property="Background" Value="{StaticResource LightBaseBrush}" />-->
+                            <Setter Property="Background" Value="{StaticResource LightBaseBrush}" />
+                            -->
+                            
+                            
 
                             <Setter Property="BorderBrush" Value="{StaticResource LightBaseBrush}" />
 
