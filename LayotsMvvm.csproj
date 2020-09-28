@@ -57,6 +57,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModel\Base\Behaviours\MouseDoubleClick\MouseDoubleClickBehavior.cs" />
     <Compile Include="ViewModel\Base\Behaviours\TreeViewSelectItem\TreeViewSelectionChangedBehavior.cs" />
     <Compile Include="Model\File.cs" />
     <Compile Include="Model\Folder.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="ViewModel\Base\Dialog\OpenDialog\OpenChildWindowCommand.cs" />
     <Compile Include="ViewModel\Base\Dialog\OpenDialog\MainOpenDialogCommand.cs" />
     <Compile Include="ViewModel\Base\Dialog\OpenDialog\OpenDialogWindowCommand.cs" />
+    <Compile Include="ViewModel\Base\ReturnMainViewModel.cs" />
     <Compile Include="ViewModel\DefaultFileViewModel.cs" />
     <Compile Include="ViewModel\OpenDialogViewModel\ChildWindowViewModel.cs" />
     <Compile Include="ViewModel\OpenDialogViewModel\DialogImageEditViewModel.cs" />

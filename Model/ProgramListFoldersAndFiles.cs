@@ -134,7 +134,7 @@ namespace LayotsMvvm.Model
 
             // Добовляем в коллекцию Item from Root
 
-            foreach (var _n in rootItemViewModel.ChildrenFolders)
+            foreach (ItemTreeViewModel _n in rootItemViewModel.ChildrenFolders)
             {
                 mItemTreeViewItems.Add(_n);
             }

@@ -63,5 +63,11 @@ namespace LayotsMvvm.ViewModel
         }
 
         #endregion
+
+        #region MainViewModel
+        // Для диалогового окна
+        public static MainViewModel GetMainViewModel { get; set; }
+
+        #endregion
     }
 }

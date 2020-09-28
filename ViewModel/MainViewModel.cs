@@ -12,7 +12,7 @@ namespace LayotsMvvm.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
-        #region fields
+        #region Fields
 
         // folder root
         string outPutDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().CodeBase);
@@ -30,10 +30,13 @@ namespace LayotsMvvm.ViewModel
 
         #endregion fields
 
-        #region constructors
+        #region Constructors
 
         public MainViewModel()
         {
+            // Необходимо для работы с диалоговыми окнами
+            ReturnMainViewModel.GetMainViewModel = this;
+
             // генерируем список моделей
             CreatCollectionModel = new ProgramListFoldersAndFiles(rootPath);
 
@@ -149,7 +152,7 @@ namespace LayotsMvvm.ViewModel
         {
             if (_item == null)
             {
-                System.Windows.MessageBox.Show("Вы находитесь в корневой директории");
+                //System.Windows.MessageBox.Show("Вы находитесь в корневой директории");
                 _item = CreatCollectionModel.rootItemViewModel;
             }
 
@@ -161,10 +164,12 @@ namespace LayotsMvvm.ViewModel
                 ChildrenFileViewModelsCollection = _item.ChildrenFiles
             };
 
-            if (FolderViewModel.GetMainViewModel == null)
-            {
-                FolderViewModel.GetMainViewModel = this;
-            }
+
+            // Необходим для окрытия диалоговых окон
+            //if (FolderViewModel.GetMainViewModel == null)
+            //{
+            //    FolderViewModel.GetMainViewModel = this;
+            //}
 
             return result;
         }

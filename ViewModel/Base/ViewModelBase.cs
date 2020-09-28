@@ -4,7 +4,7 @@
     using System.ComponentModel;
     using System.Linq.Expressions;
 
-    public class ViewModelBase : INotifyPropertyChanged
+    public class ViewModelBase : ReturnMainViewModel, INotifyPropertyChanged
     {
         protected virtual void RaisePropertyChanged(string propertyName)
         {

@@ -16,7 +16,7 @@ namespace LayotsMvvm.ViewModel
 
     public class FolderViewModelBase : Base.ViewModelBase
     {
-        #region fields
+        #region Fields
 
         private string _folderTitle;
         private string _folderPath;
@@ -25,7 +25,7 @@ namespace LayotsMvvm.ViewModel
 
         #endregion fields
 
-        #region cosntructors
+        #region Cosntructors
 
         /// <summary>
         /// Class constructor
@@ -37,7 +37,7 @@ namespace LayotsMvvm.ViewModel
 
         #endregion cosntructors
 
-        #region properties
+        #region Properties
         /// <summary>
         /// Gets the title of a document to display the information in the UI.
         /// </summary>
@@ -130,10 +130,10 @@ namespace LayotsMvvm.ViewModel
 
         #endregion
 
-        #region MainViewModel
-        public static MainViewModel GetMainViewModel { get; set; }
+        #region ReturnMainViewModel
+        // Для диалогового окна
+        // public static MainViewModel GetMainViewModel { get; set; }
 
         #endregion
-
     }
 }

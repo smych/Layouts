@@ -5,7 +5,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       mc:Ignorable="d"
       
-      xmlns:behav="clr-namespace:LayotsMvvm.ViewModel.Base.Behaviours.TreeViewSelectItem"
+      xmlns:BehaviorTreeViewSelectItem = "clr-namespace:LayotsMvvm.ViewModel.Base.Behaviours.TreeViewSelectItem"
+      xmlns:BehaviorMouseDoubleClick = "clr-namespace:LayotsMvvm.ViewModel.Base.Behaviours.MouseDoubleClick"
       xmlns:ViewModel="clr-namespace:LayotsMvvm.ViewModel"
       xmlns:Converter="clr-namespace:LayotsMvvm.ViewModel.Base.ImageConverter"
         
@@ -88,7 +89,7 @@
                                     Height="Auto" 
                                     Width="Auto" 
                                     HorizontalAlignment="Left" 
-                                    Command="{Binding Path= GetMainViewModel.OpenDialogWindow}"
+                                    Command="{Binding Path=GetMainViewModel.OpenDialogWindow}"
                                     Content="{Binding SelectedFile.GetFileTitle, StringFormat= {}{0}}" 
                                     Style="{StaticResource BaseButton}"
                                     />
@@ -138,14 +139,22 @@
                             <ListBox
                                     SelectedItem="{Binding SelectedFile, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                     ItemsSource="{Binding ChildrenFileViewModelsCollection}"
-                                    >
+                                    BehaviorMouseDoubleClick:MouseDoubleClickBehavior.Command="{Binding Path= GetMainViewModel.OpenDialogWindow}">
 
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
 
                                         <Border Margin="10" Width="120" Height="160">
-                                            <StackPanel>
+                                            <Border.ToolTip>
+                                                <ToolTip HasDropShadow="False" Placement="Relative" HorizontalOffset="90" VerticalOffset="10">
+                                                    <StackPanel>
+                                                        <TextBlock Text="Для открытия изображения в диалоговом окне" />
+                                                        <TextBlock Text="нажмите левой кнопкой мышки два раза" />
+                                                    </StackPanel>
+                                                </ToolTip>
+                                            </Border.ToolTip>
 
+                                            <StackPanel>
                                                 <!-- Поле №1 -->
                                                 <Border Width="110" Height="110" CornerRadius="5" Margin="5">
 
@@ -205,7 +214,7 @@
 
             <TreeView Grid.Column="0"
                   ItemsSource="{Binding TreeViewItems}"
-                  behav:TreeViewSelectionChangedBehavior.ChangedCommand="{Binding SelectItemChangedCommand}"
+                  BehaviorTreeViewSelectItem:TreeViewSelectionChangedBehavior.ChangedCommand="{Binding SelectItemChangedCommand}"
                   >
                 
                 <TreeView.ItemTemplate>
