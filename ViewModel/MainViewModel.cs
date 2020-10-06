@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Reflection;
@@ -48,7 +49,7 @@ namespace LayotsMvvm.ViewModel
 
             #region Отображение Root директории на экране
 
-            CurrentFolderViewModel = ReturnFolderViewModel(CreatCollectionModel.rootItemViewModel);
+            CurrentFolderViewModel = Auxiliary.ReturnFolderViewModel(CreatCollectionModel.rootItemViewModel);
 
             #endregion
         }
@@ -98,27 +99,9 @@ namespace LayotsMvvm.ViewModel
                         if (param != null)
                         {
                             this.SelectedItemTreeViewItem = param;
-                            this.CurrentFolderViewModel = ReturnFolderViewModel(SelectedItemTreeViewItem);
-
-                            //if (this.CurrentFolder != null)
-                            //    this.DirtyFlagChangedEvent -= CurrentDocument_DirtyFlagChangedEvent;
-
-                            //if (param.NameFolder == "Root")
-                            //{
-                            //    this.CurrentDocument = new RootViewModel();
-                            //}
-                            //else
-
-
-                            //this.CurrentFolderViewModel = new FolderViewModel();
-
-                            //// Это отображение имени текущей папки
-                            //this.CurrentFolderViewModel.FolderTitle = param.NameFolder;
-
-                            //// Это коллекция файлов текущей папки
-                            //this.CurrentFolderViewModel.ChildrenFileViewModelsCollection = param.ChildrenFiles;
-                            // this.CancelTreeVieSelection = this.CurrentDocument.IsDirty;
-                            // this.CurrentDocument.DirtyFlagChangedEvent += CurrentDocument_DirtyFlagChangedEvent;
+                            FolderViewModel FolderTemp = Auxiliary.ReturnFolderViewModel(SelectedItemTreeViewItem);
+                            this.CurrentFolderViewModel = FolderTemp;
+                            this.GetFolderUpCollection = Auxiliary.ListFolderReturn(FolderTemp);
                         }
                     });
                 }
@@ -147,33 +130,6 @@ namespace LayotsMvvm.ViewModel
             }
         }
 
-        // Преабразуем из ItemTreeViewModel в FolderViewModel
-        private FolderViewModel ReturnFolderViewModel(ItemTreeViewModel _item)
-        {
-            if (_item == null)
-            {
-                //System.Windows.MessageBox.Show("Вы находитесь в корневой директории");
-                _item = CreatCollectionModel.rootItemViewModel;
-            }
-
-            FolderViewModel result = new FolderViewModel
-            {
-                FolderTitle = _item.NameFolder,
-                FolderPath = _item.FolderPath,
-                UpItemTreeViewFolder = _item.UpFolder,
-                ChildrenFileViewModelsCollection = _item.ChildrenFiles
-            };
-
-
-            // Необходим для окрытия диалоговых окон
-            //if (FolderViewModel.GetMainViewModel == null)
-            //{
-            //    FolderViewModel.GetMainViewModel = this;
-            //}
-
-            return result;
-        }
-
         /// <summary>
         /// Gets a collection of <seealso cref="ItemTreeViewModel"/> objects that can
         /// be displayed in a bound treeview WPf control.
@@ -183,6 +139,15 @@ namespace LayotsMvvm.ViewModel
             get
             {
                 return _treeViewItemsCollection;
+            }
+
+            set
+            {
+                if (_treeViewItemsCollection != value)
+                {
+                    _treeViewItemsCollection = value;
+                    RaisePropertyChanged(() => TreeViewItems);
+                }
             }
         }
 
@@ -196,7 +161,7 @@ namespace LayotsMvvm.ViewModel
                 if(_rootCommand == null)
                 {
                     _rootCommand = new RelayCommand(
-                        () => CurrentFolderViewModel = ReturnFolderViewModel(CreatCollectionModel.rootItemViewModel)
+                        () => CurrentFolderViewModel = Auxiliary.ReturnFolderViewModel(CreatCollectionModel.rootItemViewModel)
                     ) ; 
                 }
 
@@ -213,12 +178,26 @@ namespace LayotsMvvm.ViewModel
                 return _upFolderCommand ??
                     (
                         _upFolderCommand = new RelayCommand(
-                            () => CurrentFolderViewModel = ReturnFolderViewModel(CurrentFolderViewModel.UpItemTreeViewFolder)));
+                            () => CurrentFolderViewModel = Auxiliary.ReturnFolderViewModel(CurrentFolderViewModel.UpItemTreeViewFolder)));
                 //() => CurrentFolderViewModel != null));
             }
         }
 
-
+        #region
+        private List<FolderViewModel> _getFolderUpCollection = null;
+        public List<FolderViewModel> GetFolderUpCollection
+        {
+            get => _getFolderUpCollection;
+            set
+            {
+                if (_getFolderUpCollection != value)
+                {
+                    _getFolderUpCollection = value;
+                    RaisePropertyChanged(() => GetFolderUpCollection);
+                }
+            }
+        }
+        #endregion
 
         #region region Реализация интерфейса ICommand для открытия дополнительных окон в MVVM
 

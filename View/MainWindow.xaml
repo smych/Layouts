@@ -115,7 +115,7 @@
                                     />
                             </GroupBox>-->
                             <GroupBox Header="Текущая папка: ">
-                                <StackPanel Height="30" Orientation="Horizontal">
+                                <!--<StackPanel Height="30" Orientation="Horizontal">
                                     <Button 
                                         Height="28" 
                                         Width="80" 
@@ -125,7 +125,27 @@
                                         >
 
                                     </Button>
-                                </StackPanel>
+                                </StackPanel>-->
+                                <ListBox ItemsSource="{Binding ReturnGetMain.GetFolderUpCollection}">
+
+                                    <ListBox.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <VirtualizingStackPanel Orientation="Horizontal" />
+                                        </ItemsPanelTemplate>
+                                    </ListBox.ItemsPanel>
+
+                                    <ListBox.ItemTemplate>
+                                        <HierarchicalDataTemplate DataType="{x:Type ViewModel:FolderViewModel}">
+                                            <!--DataType="{x:Type M:FolderModel}"-->
+                                            <StackPanel Height="30" Orientation="Horizontal">
+                                                <Button Command="{Binding ReturnGetMain.SelectItemChangedCommand}" CommandParameter="{Binding GetThisFolder}"
+                                                        Style="{StaticResource BaseButton}"
+                                                        Content="{Binding FolderTitle}">
+                                                </Button>
+                                            </StackPanel>
+                                        </HierarchicalDataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
                             </GroupBox>
                         </StackPanel>
                         
@@ -136,7 +156,7 @@
                             <ListBox
                                     SelectedItem="{Binding SelectedFile, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                     ItemsSource="{Binding ChildrenFileViewModelsCollection}"
-                                    BehaviorMouseDoubleClick:MouseDoubleClickBehavior.Command="{Binding Path= GetMainViewModel.OpenDialogWindow}">
+                                    BehaviorMouseDoubleClick:MouseDoubleClickBehavior.Command="{Binding Path=GetMainViewModel.OpenDialogWindow}">
 
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
@@ -210,7 +230,7 @@
             <!--behav:TreeViewSelectionChangedBehavior.UndoSelection="{Binding CancelTreeVieSelection}"-->
 
             <TreeView Grid.Column="0"
-                  ItemsSource="{Binding TreeViewItems}"
+                  ItemsSource="{Binding TreeViewItems, Mode=TwoWay}"
                   BehaviorTreeViewSelectItem:TreeViewSelectionChangedBehavior.ChangedCommand="{Binding SelectItemChangedCommand}"
                   >
                 

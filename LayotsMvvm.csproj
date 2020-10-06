@@ -57,6 +57,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModel\Base\Auxiliary.cs" />
     <Compile Include="ViewModel\Base\Behaviours\MouseDoubleClick\MouseDoubleClickBehavior.cs" />
     <Compile Include="ViewModel\Base\Behaviours\TreeViewSelectItem\TreeViewSelectionChangedBehavior.cs" />
     <Compile Include="Model\File.cs" />

@@ -1,4 +1,5 @@
-﻿using LayotsMvvm.ViewModel.Base.Dialog.OpenDialog;
+﻿using LayotsMvvm.ViewModel.Base;
+using LayotsMvvm.ViewModel.Base.Dialog.OpenDialog;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -130,9 +131,15 @@ namespace LayotsMvvm.ViewModel
 
         #endregion
 
+        #region
+
+        public FolderViewModelBase GetThisFolder => this;
+
+        #endregion
+
         #region ReturnMainViewModel
         // Для диалогового окна
-        // public static MainViewModel GetMainViewModel { get; set; }
+        //public static MainViewModel GetMainViewModel => ReturnMainViewModel.GetMainViewModel;
 
         #endregion
     }
