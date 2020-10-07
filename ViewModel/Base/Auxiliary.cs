@@ -38,7 +38,7 @@ namespace LayotsMvvm.ViewModel.Base
         #endregion
 
         #region
-        public static List<FolderViewModel> ListFolderReturn(FolderViewModel _folder)
+        public static List<FolderViewModel> ReturnFolderList(FolderViewModel _folder)
         {
             if (_folder == null)
             {

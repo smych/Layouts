@@ -9,6 +9,17 @@ namespace LayotsMvvm.ViewModel.Base
     public abstract class ReturnMainViewModel
     {
         public static MainViewModel GetMainViewModel { get; set; }
-        public LayotsMvvm.ViewModel.MainViewModel ReturnGetMain => GetMainViewModel;
+        public LayotsMvvm.ViewModel.MainViewModel ReturnGetMain
+        {
+            get => GetMainViewModel;
+            set
+            {
+                if (GetMainViewModel != value)
+                {
+                    GetMainViewModel = value;
+                }
+            }
+        }
+        
     }
 }

@@ -48,7 +48,6 @@ namespace LayotsMvvm.ViewModel
             _treeViewItemsCollection = CreatCollectionModel.RecursiveCreateCollectionViewModelAll();
 
             #region Отображение Root директории на экране
-
             CurrentFolderViewModel = Auxiliary.ReturnFolderViewModel(CreatCollectionModel.rootItemViewModel);
 
             #endregion
@@ -78,6 +77,7 @@ namespace LayotsMvvm.ViewModel
                 {
                     _currentFolderViewModel = value;
                     RaisePropertyChanged(() => CurrentFolderViewModel);
+                    GetFolderUpCollection = Auxiliary.ReturnFolderList(CurrentFolderViewModel as FolderViewModel);
                 }
             }
         }
@@ -101,7 +101,7 @@ namespace LayotsMvvm.ViewModel
                             this.SelectedItemTreeViewItem = param;
                             FolderViewModel FolderTemp = Auxiliary.ReturnFolderViewModel(SelectedItemTreeViewItem);
                             this.CurrentFolderViewModel = FolderTemp;
-                            this.GetFolderUpCollection = Auxiliary.ListFolderReturn(FolderTemp);
+                            // this.GetFolderUpCollection = Auxiliary.ReturnFolderList(FolderTemp);
                         }
                     });
                 }
@@ -178,6 +178,20 @@ namespace LayotsMvvm.ViewModel
                 return _upFolderCommand ??
                     (
                         _upFolderCommand = new RelayCommand(
+                            () => CurrentFolderViewModel = Auxiliary.ReturnFolderViewModel(CurrentFolderViewModel.UpItemTreeViewFolder)));
+                //() => CurrentFolderViewModel != null));
+            }
+        }
+
+        // На одну папку выше
+        private ICommand _uppFolderCommand = null;
+        public ICommand UppFolderCommand
+        {
+            get
+            {
+                return _uppFolderCommand ??
+                    (
+                        _uppFolderCommand = new RelayCommand(
                             () => CurrentFolderViewModel = Auxiliary.ReturnFolderViewModel(CurrentFolderViewModel.UpItemTreeViewFolder)));
                 //() => CurrentFolderViewModel != null));
             }
